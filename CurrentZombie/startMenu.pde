@@ -1,5 +1,5 @@
-class startMenu{
-  startMenu(){}
+class StartMenu{
+  StartMenu(){}
   
   void printTitle(PFont font){
     

@@ -1,35 +1,45 @@
-class button {
+class Button {
   int xPos;
   int yPos;
   int xSize;
   int ySize;
   String buttonName;
   boolean pressed;
-  button(int xP, int yP, int xS, int yS) {
+  boolean link;
+  boolean currentPage;
+  
+  Button(int xP, int yP, int xS, int yS) {
     xPos = xP;
     yPos = yP;
     xSize = xS;
     ySize = yS;
+  }
+  
+  void setCurrentPage(boolean page){
+    currentPage = page;
+  }
+  
+  void setLink(boolean page){
+    link = page;
   }
 
   void setButtonName(String name) {
     buttonName = name;
   }
 
-  private boolean mouseIsOver() {
-    if (mouseX > xPos && mouseX < (xPos+xSize) && mouseY > yPos && mouseY < (yPos+ySize)) {
+  private boolean mouseIsOver(int mx, int my) {
+    if (mx > xPos && mx < (xPos+xSize) && my > yPos && my < (yPos+ySize)) {
       return true;
     } else {
       return false;
     }
   }
 
-  boolean buttonPress() {
+  // change current page to false and link to 1
+ void buttonPress(int mx, int my) {
+    if(mouseIsOver(mx, my)){
+    println("yeah!");}
     
-
-    
-    
-    return true;
   }
 
   void setColor() {
