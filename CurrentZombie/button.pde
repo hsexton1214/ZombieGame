@@ -5,22 +5,27 @@ class Button {
   int ySize;
   String buttonName;
   boolean pressed;
-  boolean link;
-  boolean currentPage;
+  GameState link;
+  GameState currentPage;
+  int red;
+  int green;
+  int blue;
+  
   
   Button(int xP, int yP, int xS, int yS) {
     xPos = xP;
     yPos = yP;
     xSize = xS;
     ySize = yS;
+    
   }
   
-  void setCurrentPage(boolean page){
-    currentPage = page;
+  void setCurrentPage(GameState gameState){
+    currentPage = gameState;
   }
   
-  void setLink(boolean page){
-    link = page;
+  void setLink(GameState gameState){
+    link = gameState;
   }
 
   void setButtonName(String name) {
@@ -36,16 +41,24 @@ class Button {
   }
 
   // change current page to false and link to 1
- void buttonPress(int mx, int my) {
+ GameState buttonPress(int mx, int my) {
     if(mouseIsOver(mx, my)){
-    println("yeah!");}
+    return link;}
+    else return currentPage;
     
   }
 
-  void setColor() {
+  void setColor(int r, int g, int b) {
+    red =r;
+    green = g;
+    blue =b;
   }
 
   void printButton() {
+    fill(red,green,blue);
     rect(xPos, yPos, xSize, ySize);
+     fill(0);
+     textAlign(CENTER);
+    text(buttonName,xPos +xSize/2, yPos +ySize/2+10);
   }
 }

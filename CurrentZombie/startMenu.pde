@@ -7,8 +7,12 @@ class StartMenu{
     fill(0);
 
     textAlign(CENTER);
-    text("This text is centered.", width/2, 60);  
+    text("Zombie Horde", width/2, 60);  
 
+  }
+  
+  void buttonSetUp(){
+    
   }
   
   

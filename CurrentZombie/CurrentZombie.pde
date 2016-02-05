@@ -1,52 +1,55 @@
 PFont f;
 PFont g;
+GameState gameState;
 
-boolean startMenuOn;
-boolean mainHelpOn;
-boolean gamePageOn;
 Button startButton;
+Button helpButton;
 
 void setup() {
   size(1200, 700);
-  startMenuOn = true;
-  mainHelpOn = false;
-  gamePageOn = false;
 
   f = createFont("LucidaSans-TypewriterBold-48", 36, true);
   g = createFont("PalatinoLinotype-BoldItalic-48", 36, true);
+  gameState = GameState.STARTMENU;
 }
 
 void draw() {
   
-  
-  if (startMenuOn) {
-    background(255, 204, 0);
-    StartMenu hi = new StartMenu();
-    hi.printTitle(f);
-    startButton = new Button(0, 0, 300, 100);
+
+  switch(gameState) {
+  case STARTMENU:
+    background(0, 175, 47);
+    StartMenu startPage = new StartMenu();
+   
+    startPage.printTitle(f);
+    
+    startButton = new Button(450, 375, 300, 100);
+    startButton.setColor(189,114,48);
+    startButton.setButtonName("Play Game");
+    startButton.setLink(GameState.MAINHELP);
     startButton.printButton();
+    
+    helpButton = new Button(450, 525, 300, 100);
+    helpButton.setColor(189,114,48);
+    helpButton.setButtonName("How to Play");
+    helpButton.setLink(GameState.MAINHELP);
+    helpButton.printButton();
+    break;
 
 
-    /*   if (mousePressed == true) {
-     mainHelpOn = true; // White
-     } else {
-     mainHelpOn = false;
-     }
-     rect(25, 25, 50, 50);*/
-  }
 
 
-  if (mainHelpOn) {
+
+  case MAINHELP:
     background(0, 0, 0);
-  }
-
-
-  if (gamePageOn) {
+    break;
+   default:
   }
 }
 
 
-void mouseReleased(){
-  startButton.buttonPress(mouseX, mouseY);
-  println(mouseX, mouseY);
+
+void mouseReleased() {
+  gameState = startButton.buttonPress(mouseX, mouseY);
+ 
 }
