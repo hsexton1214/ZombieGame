@@ -10,21 +10,20 @@ class Button {
   int red;
   int green;
   int blue;
-  
-  
+
+
   Button(int xP, int yP, int xS, int yS) {
     xPos = xP;
     yPos = yP;
     xSize = xS;
     ySize = yS;
-    
   }
-  
-  void setCurrentPage(GameState gameState){
+
+  void setCurrentPage(GameState gameState) {
     currentPage = gameState;
   }
-  
-  void setLink(GameState gameState){
+
+  void setLink(GameState gameState) {
     link = gameState;
   }
 
@@ -41,11 +40,11 @@ class Button {
   }
 
   // change current page to false and link to 1
- GameState buttonPress(int mx, int my) {
-    if(mouseIsOver(mx, my)){
-    return link;}
-    else return currentPage;
-    
+  GameState buttonPress(int mx, int my) {
+    if (mouseIsOver(mx, my)) {
+      return link;
+    } else
+      return currentPage;
   }
 
   void setColor(int r, int g, int b) {
@@ -55,10 +54,10 @@ class Button {
   }
 
   void printButton() {
-    fill(red,green,blue);
+    fill(red, green, blue);
     rect(xPos, yPos, xSize, ySize);
-     fill(0);
-     textAlign(CENTER);
-    text(buttonName,xPos +xSize/2, yPos +ySize/2+10);
+    fill(0);
+    textAlign(CENTER);
+    text(buttonName, xPos +xSize/2, yPos +ySize/2+10);
   }
 }
