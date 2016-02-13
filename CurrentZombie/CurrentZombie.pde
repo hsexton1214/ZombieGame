@@ -1,5 +1,5 @@
 PFont f; //<>//
-PFont g;
+PFont fSmall;
 GameState gameState;
 
 boolean startButtonCheck;
@@ -13,12 +13,17 @@ Button playButton;
 boolean exitGameButtonCheck;
 Button exitGameButton;
 
+
+
 void setup() {
   size(1200, 700);
 
   f = createFont("LucidaSans-TypewriterBold-48", 36, true);
-  g = createFont("PalatinoLinotype-BoldItalic-48", 36, true);
+  fSmall = createFont("PalatinoLinotype-BoldItalic-48", 24, true);
   gameState = GameState.STARTMENU;
+  
+  
+  
 }
 
 void draw() {
@@ -33,7 +38,7 @@ void draw() {
 
     startButton = new Button(450, 375, 300, 100);
     startButton.setColor(189, 114, 48);
-    startButton.setButtonName("Play Game");
+    startButton.setButtonName(f,"Play Game");
     startButtonCheck = true;
     startButton.setCurrentPage(gameState);
     startButton.setLink(GameState.GAMEPAGE);
@@ -41,7 +46,7 @@ void draw() {
 
     helpButton = new Button(450, 525, 300, 100);
     helpButton.setColor(189, 114, 48);
-    helpButton.setButtonName("How to Play");
+    helpButton.setButtonName(f,"How to Play");
     helpButtonCheck = true;
     helpButton.setCurrentPage(gameState);
     helpButton.setLink(GameState.MAINHELP);
@@ -54,7 +59,7 @@ void draw() {
     playButton = new Button(100, 550, 200, 100);
     playButtonCheck = true;
     playButton.setColor(189, 114, 48);
-    playButton.setButtonName("Start Game");
+    playButton.setButtonName(f,"Start Game");
     playButton.setCurrentPage(gameState);
     playButton.setLink(GameState.GAMEPAGE);
     playButton.printButton();
@@ -62,7 +67,7 @@ void draw() {
     returnMainButton = new Button(900, 550, 200, 100);
     returnMainButtonCheck = true;
     returnMainButton.setColor(189, 114, 48);
-    returnMainButton.setButtonName("Main Menu");
+    returnMainButton.setButtonName(f,"Main Menu");
     returnMainButton.setCurrentPage(gameState);
     returnMainButton.setLink(GameState.STARTMENU);
     returnMainButton.printButton();
@@ -70,10 +75,11 @@ void draw() {
 
   case GAMEPAGE:
     background(255, 255, 255);
+    
     exitGameButton = new Button(900, 550, 200, 100);
     exitGameButtonCheck = true;
     exitGameButton.setColor(189, 114, 48);
-    exitGameButton.setButtonName("Exit Game");
+    exitGameButton.setButtonName(fSmall,"Exit Game");
     exitGameButton.setCurrentPage(gameState);
     exitGameButton.setLink(GameState.STARTMENU);
     exitGameButton.printButton();
@@ -85,19 +91,20 @@ void draw() {
 
 
 void mouseReleased() {
-  if (startButtonCheck) {
+  println(startButtonCheck, helpButtonCheck, mouseX, mouseY);
+  if (startButtonCheck && gameState != GameState.MAINHELP) {
     gameState = startButton.buttonPress(mouseX, mouseY);
     startButtonCheck = false;
   }
-  if (helpButtonCheck) {
+  if (helpButtonCheck && gameState != GameState.GAMEPAGE) {
     gameState = helpButton.buttonPress(mouseX, mouseY);
     helpButtonCheck = false;
   }
-  if (returnMainButtonCheck) {
+  if (returnMainButtonCheck && gameState != GameState.GAMEPAGE) {
     gameState = returnMainButton.buttonPress(mouseX, mouseY);
     returnMainButtonCheck = false;
   }
-  if (playButtonCheck) {
+  if (playButtonCheck && gameState != GameState.STARTMENU) {
     gameState = playButton.buttonPress(mouseX, mouseY);
     playButtonCheck = false;
   }

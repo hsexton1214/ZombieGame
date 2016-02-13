@@ -27,7 +27,8 @@ class Button {
     link = gameState;
   }
 
-  void setButtonName(String name) {
+  void setButtonName(PFont f, String name) {
+    textFont(f);
     buttonName = name;
   }
 
@@ -44,6 +45,7 @@ class Button {
     if (mouseIsOver(mx, my)) {
       return link;
     } else
+   
       return currentPage;
   }
 
