@@ -41,7 +41,7 @@ void draw() {
     startButton.setButtonName(f,"Play Game");
     startButtonCheck = true;
     startButton.setCurrentPage(gameState);
-    startButton.setLink(GameState.GAMEPAGE);
+    startButton.setLink(GameState.Level1E);
     startButton.printButton();
 
     helpButton = new Button(450, 525, 300, 100);
@@ -61,7 +61,7 @@ void draw() {
     playButton.setColor(189, 114, 48);
     playButton.setButtonName(f,"Start Game");
     playButton.setCurrentPage(gameState);
-    playButton.setLink(GameState.GAMEPAGE);
+    playButton.setLink(GameState.Level1E);
     playButton.printButton();
 
     returnMainButton = new Button(900, 550, 200, 100);
@@ -73,7 +73,7 @@ void draw() {
     returnMainButton.printButton();
     break;
 
-  case GAMEPAGE:
+  case Level1E:
     background(255, 255, 255);
     
     exitGameButton = new Button(900, 550, 200, 100);
@@ -96,11 +96,11 @@ void mouseReleased() {
     gameState = startButton.buttonPress(mouseX, mouseY);
     startButtonCheck = false;
   }
-  if (helpButtonCheck && gameState != GameState.GAMEPAGE) {
+  if (helpButtonCheck && gameState != GameState.Level1E) {
     gameState = helpButton.buttonPress(mouseX, mouseY);
     helpButtonCheck = false;
   }
-  if (returnMainButtonCheck && gameState != GameState.GAMEPAGE) {
+  if (returnMainButtonCheck && gameState != GameState.Level1E) {
     gameState = returnMainButton.buttonPress(mouseX, mouseY);
     returnMainButtonCheck = false;
   }
