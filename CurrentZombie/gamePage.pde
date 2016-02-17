@@ -1,5 +1,5 @@
-class Level1E{
-    Level1E(){}
+class gamePage{
+    gamePage(){}
     
     void printTitle(PFont font){
     
