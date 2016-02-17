@@ -75,7 +75,9 @@ void draw() {
 
   case Level1E:
     background(255, 255, 255);
-    
+    PImage img;
+    img = loadImage("Act1.png");
+    image(img,0,0);
     exitGameButton = new Button(900, 550, 200, 100);
     exitGameButtonCheck = true;
     exitGameButton.setColor(189, 114, 48);
@@ -84,6 +86,21 @@ void draw() {
     exitGameButton.setLink(GameState.STARTMENU);
     exitGameButton.printButton();
     break;
+    
+    case Level2E:
+    background(255, 255, 255);
+    PImage img;
+    img = loadImage("Act2.png");
+    image(img,0,0);
+    exitGameButton = new Button(900, 550, 200, 100);
+    exitGameButtonCheck = true;
+    exitGameButton.setColor(189, 114, 48);
+    exitGameButton.setButtonName(fSmall,"Exit Game");
+    exitGameButton.setCurrentPage(gameState);
+    exitGameButton.setLink(GameState.STARTMENU);
+    exitGameButton.printButton();
+    break;
+    
   default:
   }
 }
