@@ -1,3 +1,3 @@
 public enum GameState {
-  STARTMENU, MAINHELP, GAMEPAGE
+  STARTMENU, MAINHELP, gamePage
 }

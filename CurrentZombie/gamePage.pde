@@ -1,10 +1,5 @@
-<<<<<<< HEAD:CurrentZombie/Level1E.pde
-class Level1E{
-    Level1E(){}
-=======
 class gamePage{
     gamePage(){}
->>>>>>> origin/master:CurrentZombie/gamePage.pde
     
     void printTitle(PFont font){
     

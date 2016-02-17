@@ -99,11 +99,11 @@ void mouseReleased() {
     gameState = startButton.buttonPress(mouseX, mouseY);
     startButtonCheck = false;
   }
-  if (helpButtonCheck && gameState != GameState.Level1E) {
+  if (helpButtonCheck && gameState != GameState.gamePage) {
     gameState = helpButton.buttonPress(mouseX, mouseY);
     helpButtonCheck = false;
   }
-  if (returnMainButtonCheck && gameState != GameState.Level1E) {
+  if (returnMainButtonCheck && gameState != GameState.gamePage) {
     gameState = returnMainButton.buttonPress(mouseX, mouseY);
     returnMainButtonCheck = false;
   }
