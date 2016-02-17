@@ -41,7 +41,7 @@ void draw() {
     startButton.setButtonName(f,"Play Game");
     startButtonCheck = true;
     startButton.setCurrentPage(gameState);
-    startButton.setLink(GameState.Level1E);
+    startButton.setLink(GameState.gamePage);
     startButton.printButton();
 
     helpButton = new Button(450, 525, 300, 100);
@@ -61,7 +61,7 @@ void draw() {
     playButton.setColor(189, 114, 48);
     playButton.setButtonName(f,"Start Game");
     playButton.setCurrentPage(gameState);
-    playButton.setLink(GameState.Level1E);
+    playButton.setLink(GameState.gamePage);
     playButton.printButton();
 
     returnMainButton = new Button(900, 550, 200, 100);
@@ -73,24 +73,10 @@ void draw() {
     returnMainButton.printButton();
     break;
 
-  case Level1E:
+  case gamePage:
     background(255, 255, 255);
     PImage img;
     img = loadImage("Act1.png");
-    image(img,0,0);
-    exitGameButton = new Button(900, 550, 200, 100);
-    exitGameButtonCheck = true;
-    exitGameButton.setColor(189, 114, 48);
-    exitGameButton.setButtonName(fSmall,"Exit Game");
-    exitGameButton.setCurrentPage(gameState);
-    exitGameButton.setLink(GameState.STARTMENU);
-    exitGameButton.printButton();
-    break;
-    
-    case Level2E:
-    background(255, 255, 255);
-    PImage img;
-    img = loadImage("Act2.png");
     image(img,0,0);
     exitGameButton = new Button(900, 550, 200, 100);
     exitGameButtonCheck = true;
