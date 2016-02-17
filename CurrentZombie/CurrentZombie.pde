@@ -13,6 +13,9 @@ Button playButton;
 boolean exitGameButtonCheck;
 Button exitGameButton;
 
+boolean newProblem;
+int count;
+
 
 
 void setup() {
@@ -21,7 +24,7 @@ void setup() {
   f = createFont("LucidaSans-TypewriterBold-48", 36, true);
   fSmall = createFont("PalatinoLinotype-BoldItalic-48", 24, true);
   gameState = GameState.STARTMENU;
-  
+  count=0;
   
   
 }
@@ -78,6 +81,18 @@ void draw() {
     PImage img;
     img = loadImage("Act1.png");
     image(img,0,0);
+    fill(255,255,255);
+    rect(300,100,600,300);
+    if(newProblem){
+      newProblem = false;
+      count= count + 1;
+    }
+      fill(0);
+      text("press enter:",500,150);
+      text(count,500,200);
+    
+    
+    
     exitGameButton = new Button(900, 550, 200, 100);
     exitGameButtonCheck = true;
     exitGameButton.setColor(189, 114, 48);
@@ -94,10 +109,11 @@ void draw() {
 
 
 void mouseReleased() {
-  println(startButtonCheck, helpButtonCheck, mouseX, mouseY);
+  //println(startButtonCheck, helpButtonCheck, mouseX, mouseY);
   if (startButtonCheck && gameState != GameState.MAINHELP) {
     gameState = startButton.buttonPress(mouseX, mouseY);
     startButtonCheck = false;
+    newProblem =true;
   }
   if (helpButtonCheck && gameState != GameState.gamePage) {
     gameState = helpButton.buttonPress(mouseX, mouseY);
@@ -114,6 +130,12 @@ void mouseReleased() {
   if(exitGameButtonCheck){
     gameState = exitGameButton.buttonPress(mouseX,mouseY);
     exitGameButtonCheck = false;
+  }
+}
+
+void keyPressed(){
+  if(keyCode == ENTER){
+    newProblem = true;
   }
 }
 
