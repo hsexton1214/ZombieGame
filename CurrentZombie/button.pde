@@ -45,7 +45,7 @@ class Button {
     if (mouseIsOver(mx, my)) {
       return link;
     } else
-   
+
       return currentPage;
   }
 

@@ -15,6 +15,8 @@ Button exitGameButton;
 
 boolean newProblem;
 int count;
+Problem currentProblem;
+String answer;
 
 
 
@@ -25,8 +27,7 @@ void setup() {
   fSmall = createFont("PalatinoLinotype-BoldItalic-48", 24, true);
   gameState = GameState.STARTMENU;
   count=0;
-  
-  
+  answer="";
 }
 
 void draw() {
@@ -41,7 +42,7 @@ void draw() {
 
     startButton = new Button(450, 375, 300, 100);
     startButton.setColor(189, 114, 48);
-    startButton.setButtonName(f,"Play Game");
+    startButton.setButtonName(f, "Play Game");
     startButtonCheck = true;
     startButton.setCurrentPage(gameState);
     startButton.setLink(GameState.gamePage);
@@ -49,7 +50,7 @@ void draw() {
 
     helpButton = new Button(450, 525, 300, 100);
     helpButton.setColor(189, 114, 48);
-    helpButton.setButtonName(f,"How to Play");
+    helpButton.setButtonName(f, "How to Play");
     helpButtonCheck = true;
     helpButton.setCurrentPage(gameState);
     helpButton.setLink(GameState.MAINHELP);
@@ -62,7 +63,7 @@ void draw() {
     playButton = new Button(100, 550, 200, 100);
     playButtonCheck = true;
     playButton.setColor(189, 114, 48);
-    playButton.setButtonName(f,"Start Game");
+    playButton.setButtonName(f, "Start Game");
     playButton.setCurrentPage(gameState);
     playButton.setLink(GameState.gamePage);
     playButton.printButton();
@@ -70,7 +71,7 @@ void draw() {
     returnMainButton = new Button(900, 550, 200, 100);
     returnMainButtonCheck = true;
     returnMainButton.setColor(189, 114, 48);
-    returnMainButton.setButtonName(f,"Main Menu");
+    returnMainButton.setButtonName(f, "Main Menu");
     returnMainButton.setCurrentPage(gameState);
     returnMainButton.setLink(GameState.STARTMENU);
     returnMainButton.printButton();
@@ -80,28 +81,38 @@ void draw() {
     background(255, 255, 255);
     PImage img;
     img = loadImage("Act1.png");
-    image(img,0,0);
-    fill(255,255,255);
-    rect(300,100,600,300);
-    if(newProblem){
+    image(img, 0, 0);
+    fill(255, 255, 255);
+    rect(300, 100, 600, 350);
+    if (newProblem) {
+      answer ="";
       newProblem = false;
       count= count + 1;
+      currentProblem = new Problem();
     }
-      fill(0);
-      text("press enter:",500,150);
-      text(count,500,200);
-    
-    
-    
+    fill(0);
+    textAlign(CENTER);
+    text(currentProblem.writeQuestion(), 350, 125, 500, 300);
+    text("press enter to submit:", 500, 275);
+    //text(count,500,200);
+    fill(189, 114, 48);
+    rect(450, 300, 300, 100);
+    fill(0);
+    textFont(f);
+    textAlign(LEFT);
+    text(answer, 475, 375);
+
+
+
     exitGameButton = new Button(900, 550, 200, 100);
     exitGameButtonCheck = true;
     exitGameButton.setColor(189, 114, 48);
-    exitGameButton.setButtonName(fSmall,"Exit Game");
+    exitGameButton.setButtonName(fSmall, "Exit Game");
     exitGameButton.setCurrentPage(gameState);
     exitGameButton.setLink(GameState.STARTMENU);
     exitGameButton.printButton();
     break;
-    
+
   default:
   }
 }
@@ -127,15 +138,24 @@ void mouseReleased() {
     gameState = playButton.buttonPress(mouseX, mouseY);
     playButtonCheck = false;
   }
-  if(exitGameButtonCheck){
-    gameState = exitGameButton.buttonPress(mouseX,mouseY);
+  if (exitGameButtonCheck) {
+    gameState = exitGameButton.buttonPress(mouseX, mouseY);
     exitGameButtonCheck = false;
   }
 }
 
-void keyPressed(){
-  if(keyCode == ENTER){
+void keyPressed() {
+  if (keyCode == ENTER) {
+    if (currentProblem.checkAnswer(answer)) {
+      println("correct");
+    } else {
+      println("wrong");
+    }
     newProblem = true;
+  }
+  //number or period
+  if ((key >= '0' && key <= '9') || key == '.') {
+    answer = answer + key;
   }
 }
 

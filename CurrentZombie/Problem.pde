@@ -9,12 +9,25 @@ class Problem {
   // 1 - unknown variable is speed
   // 2 - unknown variable is distance
   int type;
+  float correctAnswer;
+
 
   Problem() {
     time = random(1, max);
     speed = random(1, max);
     distance = time*speed;
     type = int(random(int(0), int(3)));
+    createAnswer();
+  }
+
+  private void createAnswer() {
+    if (type == 0) {
+      correctAnswer = time;
+    } else if (type == 1) {
+      correctAnswer = speed;
+    } else if (type == 2) {
+      correctAnswer = distance;
+    }
   }
 
   float getTime() {
@@ -45,5 +58,15 @@ class Problem {
       question = "ERROR";
     }
     return question;
+  }
+
+  boolean checkAnswer(String stringAnswer) {
+    float inc = .05;
+    float answer = float(stringAnswer);
+    if (answer>(correctAnswer-inc) && answer<(correctAnswer+inc)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
