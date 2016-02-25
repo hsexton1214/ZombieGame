@@ -51,7 +51,7 @@ class Problem {
     if (type == 0) {
       question = String.format("If you have traveled %.2f distance traveling at %.2f speed how long did you travel?", distance, speed);
     } else if (type == 1) {
-      question = String.format("If you have traveled %.2f distance in %.2f amount of time how long have you been traveling?", distance, time);
+      question = String.format("If you have traveled %.2f distance in %.2f amount of time how fast have you been traveling?", distance, time);
     } else if (type == 2) {
       question = String.format("If you travel at %.2f speed for %.2f time how far do you travel?", speed, time);
     } else {
