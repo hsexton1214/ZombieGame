@@ -1,5 +1,5 @@
-class gamePage{
-    gamePage(){}
+class GamePage{
+    GamePage(){}
     
     void printTitle(PFont font){
     
@@ -14,5 +14,7 @@ class gamePage{
     
   }
   
+  void problemCorrect(){}
+  void problemWrong(){}
   
 }

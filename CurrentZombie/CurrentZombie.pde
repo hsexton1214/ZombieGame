@@ -12,12 +12,17 @@ boolean playButtonCheck;
 Button playButton;
 boolean exitGameButtonCheck;
 Button exitGameButton;
+boolean submitButtonCheck;
+Button submitButton;
+boolean inGameHelpButtonCheck;
+Button inGameHelpButton;
 
 boolean newProblem;
 int count;
 Problem currentProblem;
 String answer;
 
+GamePage gameScreen;
 
 
 void setup() {
@@ -96,15 +101,25 @@ void draw() {
     text("press enter to submit:", 500, 275);
     //text(count,500,200);
     fill(189, 114, 48);
-    rect(450, 300, 300, 100);
+    rect(375, 300, 300, 100);
     fill(0);
     textFont(f);
     textAlign(LEFT);
-    text(answer, 475, 375);
+    text(answer, 400, 375);
+    submitButton = new Button(700,300,100,50);
+    submitButtonCheck=true;
+    submitButton.setColor(100,200,48);
+    submitButton.setButtonName(fSmall,"Submit");
+    submitButton.printButton();
+    
+    inGameHelpButton = new Button(950, 100, 200, 75);
+    inGameHelpButtonCheck = true;
+    inGameHelpButton.setColor(189, 114, 48);
+    inGameHelpButton.setButtonName(fSmall, "Help");
+    inGameHelpButton.setCurrentPage(gameState);
+    inGameHelpButton.printButton();
 
-
-
-    exitGameButton = new Button(900, 550, 200, 100);
+    exitGameButton = new Button(950, 200, 200, 75);
     exitGameButtonCheck = true;
     exitGameButton.setColor(189, 114, 48);
     exitGameButton.setButtonName(fSmall, "Exit Game");
@@ -141,6 +156,12 @@ void mouseReleased() {
   if (exitGameButtonCheck) {
     gameState = exitGameButton.buttonPressLink(mouseX, mouseY);
     exitGameButtonCheck = false;
+  }
+  if(submitButtonCheck){
+    submitButtonCheck = false;
+    if(currentProblem.checkAnswer(answer)){
+      
+    }
   }
 }
 

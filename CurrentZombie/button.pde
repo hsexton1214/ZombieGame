@@ -43,15 +43,16 @@ class Button {
   GameState buttonPressLink(int mx, int my) {
     if (mouseIsOver(mx, my)) {
       return link;
-    } else{
+    } else {
       return currentPage;
     }
   }
-  
-  void buttonPressAction(int mx, int my){
-    if(mouseIsOver(mx,my)){
-      
-    }
+
+  boolean buttonPressAction(int mx, int my) {
+    if (mouseIsOver(mx, my)) {
+      return true;
+    } else
+      return false;
   }
 
   void setColor(int r, int g, int b) {
