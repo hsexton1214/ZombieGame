@@ -18,11 +18,15 @@ boolean submitButtonCheck;
 Button submitButton;
 boolean inGameHelpButtonCheck;
 Button inGameHelpButton;
+boolean nextProblemCheck;
+Button nextProblem;
+
 
 boolean newProblem;
 int count;
 Problem currentProblem;
 String answer;
+int currentAnswer;
 
 GamePage gameScreen;
 StartMenu startPage;
@@ -36,6 +40,7 @@ void setup() {
   gameState = GameState.STARTMENU;
   count=0;
   answer="";
+  currentAnswer =0;
 }
 
 void draw() {
@@ -77,7 +82,8 @@ void draw() {
     fill(0);
     textAlign(CENTER);
     text(currentProblem.writeQuestion(), 350, 125, 500, 300);
-    text("press enter to submit:", 500, 275);
+    //for testing purposes
+    println(currentProblem.correctAnswer);
     //text(count,500,200);
     fill(189, 114, 48);
     rect(375, 300, 300, 100);
@@ -85,13 +91,29 @@ void draw() {
     textFont(f);
     textAlign(LEFT);
     text(answer, 400, 375);
-    
-    submitButton = new Button(700,300,100,50);
+
+    submitButton = new Button(700, 300, 100, 50);
     gameScreen.submitButtonSetUp();
     inGameHelpButton = new Button(950, 100, 200, 75);
     gameScreen.inGameHelpButtonSetUp();
     exitGameButton = new Button(950, 200, 200, 75);
     gameScreen.exitGameButtonSetUp();
+
+
+    switch(currentAnswer) {
+    case 1:
+      gameScreen.problemCorrect();
+      break;
+    case -1:
+      gameScreen.problemWrong();
+      break;
+    case 0:
+      break;
+    default:
+      println("error");
+    }
+    
+    
     break;
 
   default:
@@ -123,25 +145,19 @@ void mouseReleased() {
     gameState = exitGameButton.buttonPressLink(mouseX, mouseY);
     exitGameButtonCheck = false;
   }
-  if(submitButtonCheck){
-    submitButtonCheck = false;
-    if(currentProblem.checkAnswer(answer)){
-      gameScreen.problemCorrect();
-    } else{
-      gameScreen.problemWrong();
+  if (submitButtonCheck) {
+    if (submitButton.buttonPressAction(mouseX, mouseY)) {
+      submitButtonCheck = false;
+      if (currentProblem.checkAnswer(answer)) {
+        currentAnswer = 1;
+      } else {
+        currentAnswer = -1;
+      }
     }
   }
 }
 
 void keyPressed() {
-  if (keyCode == ENTER) {
-    if (currentProblem.checkAnswer(answer)) {
-      println("correct");
-    } else {
-      println("wrong");
-    }
-    newProblem = true;
-  }
   //number or period
   if ((key >= '0' && key <= '9') || key == '.') {
     answer = answer + key;

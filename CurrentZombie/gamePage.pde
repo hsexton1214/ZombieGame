@@ -23,9 +23,18 @@ class GamePage {
     exitGameButton.printButton();
   }
   void problemCorrect() {
-    println("right");
+    fill(142,142,56);
+    rect(150,50,900,600);
+    fill(0);
+    textAlign(CENTER);
+    text("Correct Answer",600, 150);
   }
   void problemWrong() {
-    println("wrong");
+    fill(205,0,0);
+    rect(150,50,900,600);
+    fill(0);
+    textAlign(CENTER);
+    text("Incorrect Answer",600, 150);
+    
   }
 }
