@@ -11,7 +11,6 @@ class Button {
   int green;
   int blue;
 
-
   Button(int xP, int yP, int xS, int yS) {
     xPos = xP;
     yPos = yP;
@@ -41,12 +40,18 @@ class Button {
   }
 
   // change current page to false and link to 1
-  GameState buttonPress(int mx, int my) {
+  GameState buttonPressLink(int mx, int my) {
     if (mouseIsOver(mx, my)) {
       return link;
-    } else
-
+    } else{
       return currentPage;
+    }
+  }
+  
+  void buttonPressAction(int mx, int my){
+    if(mouseIsOver(mx,my)){
+      
+    }
   }
 
   void setColor(int r, int g, int b) {
