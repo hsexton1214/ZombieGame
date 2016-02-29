@@ -1,6 +1,8 @@
-PFont f; //<>// //<>//
+PFont f;  //<>//
 PFont fSmall;
 GameState gameState;
+
+PImage img;
 
 boolean startButtonCheck;
 Button startButton;
@@ -23,7 +25,8 @@ Problem currentProblem;
 String answer;
 
 GamePage gameScreen;
-
+StartMenu startPage;
+MainHelp mainHelpPage;
 
 void setup() {
   size(1200, 700);
@@ -41,50 +44,26 @@ void draw() {
   switch(gameState) {
   case STARTMENU:
     background(0, 175, 47);
-    StartMenu startPage = new StartMenu();
-
+    startPage = new StartMenu();
     startPage.printTitle(f);
-
     startButton = new Button(450, 375, 300, 100);
-    startButton.setColor(189, 114, 48);
-    startButton.setButtonName(f, "Play Game");
-    startButtonCheck = true;
-    startButton.setCurrentPage(gameState);
-    startButton.setLink(GameState.gamePage);
-    startButton.printButton();
-
+    startPage.startButtonSetUp();
     helpButton = new Button(450, 525, 300, 100);
-    helpButton.setColor(189, 114, 48);
-    helpButton.setButtonName(f, "How to Play");
-    helpButtonCheck = true;
-    helpButton.setCurrentPage(gameState);
-    helpButton.setLink(GameState.MAINHELP);
-    helpButton.printButton();
+    startPage.helpButtonSetUp();
     break;
-
 
   case MAINHELP:
     background(33, 107, 204);
+    mainHelpPage = new MainHelp();
     playButton = new Button(100, 550, 200, 100);
-    playButtonCheck = true;
-    playButton.setColor(189, 114, 48);
-    playButton.setButtonName(f, "Start Game");
-    playButton.setCurrentPage(gameState);
-    playButton.setLink(GameState.gamePage);
-    playButton.printButton();
-
+    mainHelpPage.playButtonSetUp();
     returnMainButton = new Button(900, 550, 200, 100);
-    returnMainButtonCheck = true;
-    returnMainButton.setColor(189, 114, 48);
-    returnMainButton.setButtonName(f, "Main Menu");
-    returnMainButton.setCurrentPage(gameState);
-    returnMainButton.setLink(GameState.STARTMENU);
-    returnMainButton.printButton();
+    mainHelpPage.returnMainButtonSetUp();
     break;
 
   case gamePage:
     background(255, 255, 255);
-    PImage img;
+    gameScreen = new GamePage();
     img = loadImage("Act1.png");
     image(img, 0, 0);
     fill(255, 255, 255);
@@ -106,26 +85,13 @@ void draw() {
     textFont(f);
     textAlign(LEFT);
     text(answer, 400, 375);
-    submitButton = new Button(700,300,100,50);
-    submitButtonCheck=true;
-    submitButton.setColor(100,200,48);
-    submitButton.setButtonName(fSmall,"Submit");
-    submitButton.printButton();
     
+    submitButton = new Button(700,300,100,50);
+    gameScreen.submitButtonSetUp();
     inGameHelpButton = new Button(950, 100, 200, 75);
-    inGameHelpButtonCheck = true;
-    inGameHelpButton.setColor(189, 114, 48);
-    inGameHelpButton.setButtonName(fSmall, "Help");
-    inGameHelpButton.setCurrentPage(gameState);
-    inGameHelpButton.printButton();
-
+    gameScreen.inGameHelpButtonSetUp();
     exitGameButton = new Button(950, 200, 200, 75);
-    exitGameButtonCheck = true;
-    exitGameButton.setColor(189, 114, 48);
-    exitGameButton.setButtonName(fSmall, "Exit Game");
-    exitGameButton.setCurrentPage(gameState);
-    exitGameButton.setLink(GameState.STARTMENU);
-    exitGameButton.printButton();
+    gameScreen.exitGameButtonSetUp();
     break;
 
   default:
@@ -160,7 +126,9 @@ void mouseReleased() {
   if(submitButtonCheck){
     submitButtonCheck = false;
     if(currentProblem.checkAnswer(answer)){
-      
+      gameScreen.problemCorrect();
+    } else{
+      gameScreen.problemWrong();
     }
   }
 }
