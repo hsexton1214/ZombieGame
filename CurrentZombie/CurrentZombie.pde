@@ -122,24 +122,24 @@ void draw() {
 void mouseReleased() {
   //println(startButtonCheck, helpButtonCheck, mouseX, mouseY);
   if (startButtonCheck && gameState != GameState.MAINHELP) {
-    gameState = startButton.buttonPress(mouseX, mouseY);
+    gameState = startButton.buttonPressLink(mouseX, mouseY);
     startButtonCheck = false;
     newProblem =true;
   }
   if (helpButtonCheck && gameState != GameState.gamePage) {
-    gameState = helpButton.buttonPress(mouseX, mouseY);
+    gameState = helpButton.buttonPressLink(mouseX, mouseY);
     helpButtonCheck = false;
   }
   if (returnMainButtonCheck && gameState != GameState.gamePage) {
-    gameState = returnMainButton.buttonPress(mouseX, mouseY);
+    gameState = returnMainButton.buttonPressLink(mouseX, mouseY);
     returnMainButtonCheck = false;
   }
   if (playButtonCheck && gameState != GameState.STARTMENU) {
-    gameState = playButton.buttonPress(mouseX, mouseY);
+    gameState = playButton.buttonPressLink(mouseX, mouseY);
     playButtonCheck = false;
   }
   if (exitGameButtonCheck) {
-    gameState = exitGameButton.buttonPress(mouseX, mouseY);
+    gameState = exitGameButton.buttonPressLink(mouseX, mouseY);
     exitGameButtonCheck = false;
   }
 }
