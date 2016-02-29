@@ -18,8 +18,8 @@ boolean submitButtonCheck;
 Button submitButton;
 boolean inGameHelpButtonCheck;
 Button inGameHelpButton;
-boolean nextProblemCheck;
-Button nextProblem;
+boolean nextProblemButtonCheck;
+Button nextProblemButton;
 
 
 boolean newProblem;
@@ -99,7 +99,8 @@ void draw() {
     exitGameButton = new Button(950, 200, 200, 75);
     gameScreen.exitGameButtonSetUp();
 
-
+    
+    nextProblemButton = new Button(500,250,200,75);
     switch(currentAnswer) {
     case 1:
       gameScreen.problemCorrect();
@@ -153,6 +154,12 @@ void mouseReleased() {
       } else {
         currentAnswer = -1;
       }
+    }
+  }
+  if(nextProblemButtonCheck){
+    if(nextProblemButton.buttonPressAction(mouseX, mouseY)){
+      currentAnswer = 0;
+      newProblem = true;
     }
   }
 }

@@ -28,6 +28,10 @@ class GamePage {
     fill(0);
     textAlign(CENTER);
     text("Correct Answer",600, 150);
+    nextProblemButtonCheck=true;
+    nextProblemButton.setColor(189,114,48);
+    nextProblemButton.setButtonName(fSmall,"Next Question");
+    nextProblemButton.printButton();
   }
   void problemWrong() {
     fill(205,0,0);
@@ -35,6 +39,9 @@ class GamePage {
     fill(0);
     textAlign(CENTER);
     text("Incorrect Answer",600, 150);
-    
+     nextProblemButtonCheck=true;
+    nextProblemButton.setColor(189,114,48);
+    nextProblemButton.setButtonName(fSmall,"Next Question");
+    nextProblemButton.printButton();
   }
 }
